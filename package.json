@@ -12,6 +12,7 @@
     "scripts": {
         "start": "node index.js --autocleartmp --autoread",
         "test": "node test.js",
+        "nyimak": "node index.js --nyimak --self",
         "test2": "nodemon index.js --server --autocleartmp --autoread"
     },
     "keywords": [

@@ -625,9 +625,6 @@ module.exports = {
                         console.error(e)
                         if (e) {
                             let text = util.format(e)
-                            for (let key of Object.values(APIKeys)) {
-                                text = text.replace(new RegExp(key, 'g'), '#HIDDEN#')
-			    }
                             if (e.name)
                             for (let jid of owner.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != this.user.jid)) {
                                 let data = (await this.onWhatsApp(jid))[0] || {}

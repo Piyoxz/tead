@@ -2,6 +2,7 @@ let handler = m => m
 handler.before = async function (m) {
   this.suit = this.suit ? this.suit : {}
   if (db.data.users[m.sender].suit < 0) db.data.users[m.sender].suit = 0
+  console.log(this.suit)
   let room = Object.values(this.suit).find(room => room.id && room.status && [room.p, room.p2].includes(m.sender))
   if (room) {
     let win = ''
@@ -27,8 +28,8 @@ klik wa.me/${conn.user.jid.split`@`[0]}`, m.chat, {
         }
       })
 
-      if (!room.pilih) this.send3But(room.p, 'Silahkan pilih', `Menang +${room.poin}XP\nKalah -${room.poin_lose}XP`, 'Batu🗿', 'Batu', 'Kertas📄', 'Kertas', 'Gunting✂️', 'Gunting', m)
-      if (!room.pilih2) this.send3But(room.p2, 'Silahkan pilih', `Menang +${room.poin}XP\nKalah -${room.poin_lose}XP`, 'Batu🗿', 'Batu', 'Kertas📄', 'Kertas', 'Gunting✂️', 'Gunting', m)
+      if (!room.pilih) this.reply(room.p, 'Silahkan pilih\n\n•Batu\n•Gunting\n•Kertas\n\n Silahkan Ketik Salah Satu', m)
+      if (!room.pilih2) this.reply(room.p, 'Silahkan pilih\n\n•Batu\n•Gunting\n•Kertas\n\n Silahkan Ketik Salah Satu', m)
       room.waktu_milih = setTimeout(() => {
         if (!room.pilih && !room.pilih2) this.reply(m.chat, `Kedua pemain tidak niat main,\nSuit dibatalkan`)
         else if (!room.pilih || !room.pilih2) {
@@ -87,8 +88,6 @@ _*Hasil Suit*_${tie ? '\nSERI' : ''}
   return !0
 }
 handler.exp = 0
-module.exports = handler
 
-function random(arr) {
-  return arr[Math.floor(Math.random() * arr.length)]
-}
+
+export default handler

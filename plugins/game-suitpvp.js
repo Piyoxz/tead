@@ -1,7 +1,3 @@
-/* 
-    Made by https://github.com/syahrularranger 
-    Jangan di hapus credit nya :)
-*/
 let timeout = 60000
 let poin = 500
 let poin_lose = -100
@@ -16,14 +12,17 @@ _*SUIT PvP*_
 
 @${m.sender.split`@`[0]} menantang @${m.mentionedJid[0].split`@`[0]} untuk bermain suit
 
+Ketik terima/ok/gas untuk memulai
+Ketik tolak/gabisa/nanti untuk menolak
+
 Silahkan @${m.mentionedJid[0].split`@`[0]} 
 `.trim()
-  let footer = `Ketik "terima/ok/gas" untuk memulai suit\nKetik "tolak/gabisa/nanti" untuk menolak`
+  let lawan = m.mentionedJid[0]
   conn.suit[id] = {
-    chat: await conn.send2But(m.chat, caption, footer, 'Terima', 'ok', 'Tolak', 'tolak', m, { contextInfo: { mentionedJid: conn.parseMention(caption) } }),
+    chat: await conn.reply(m.chat, caption, m, { contextInfo: { mentionedJid: conn.parseMention(caption) } }),
     id: id,
     p: m.sender,
-    p2: m.mentionedJid[0],
+    p2: lawan,
     status: 'wait',
     waktu: setTimeout(() => {
       if (conn.suit[id]) conn.reply(m.chat, `_Waktu suit habis_`, m)
@@ -37,4 +36,4 @@ handler.command = /^suit(pvp|2)$/i
 handler.limit = false
 handler.group = true
 
-module.exports = handler
+export default handler

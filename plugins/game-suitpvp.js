@@ -36,4 +36,4 @@ handler.command = /^suit(pvp|2)$/i
 handler.limit = false
 handler.group = true
 
-export default handler
+module.exports = handler

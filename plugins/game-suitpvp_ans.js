@@ -90,4 +90,4 @@ _*Hasil Suit*_${tie ? '\nSERI' : ''}
 handler.exp = 0
 
 
-export default handler
+module.exports = handler
